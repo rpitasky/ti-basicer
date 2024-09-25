@@ -6,7 +6,7 @@
 </head>
 <body>
     <p style="position: sticky; top: 0; background-color: white;"><code>/([IiEeRWSjUPLl?0-9]*\n)*/</code></p>
-    <textarea style="font-family: monospace;" id="input" rows="10" cols="80"></textarea>
+    <textarea onkeyup="display(document.getElementById('input').value);" style="font-family: monospace;" id="input" rows="10" cols="80"></textarea>
     <input type="submit" onclick="execute(document.getElementById('input').value); return false;" disabled id="submit" value="go">
     <pre id="parsed"></pre>
     <script>
@@ -15,11 +15,12 @@
         }
     </script>
     <script type="module">
-        import init, {execute} from './pkg/ti_basicer.js';
+        import init, {execute, display} from './pkg/ti_basicer.js';
 
         async function run() {
             await init();
             window["execute"] = execute;
+            window["display"] = display;
 
             document.getElementById("submit").disabled = false
         }
